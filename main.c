@@ -6,33 +6,12 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/21 23:00:52 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:12:40 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// int check_double(int ac, char **av)
-// {
-// 	int x;
-// 	int y;
-
-// 	x = 1;
-// 	while (x < ac)
-// 	{
-// 		y = 1;
-// 		while (y < ac)
-// 		{
-// 			if (x == y)
-// 				y++;
-// 			if(ft_strncmp(av[x], av[y], ft_strlen(av[x])) == 0)
-// 				return(1);
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// 	return(0);
-// }
 void	free_func(char **args)
 {
 	int	size;
@@ -45,24 +24,6 @@ void	free_func(char **args)
 	while (i < size)
 		free(args[i++]);
 	free(args);
-}
-int	scan_backwards(char *av)
-{
-	int y;
-
-	y = ft_strlen(av);
-	// y--;
-	//sacn from the back
-	while (av[y])
-	{
-		while (av[y] == ' ' || av[y] == '\n' || av[y] == '\t'
-			|| av[y] == '\v' || av[y] == '\r' || av[y] == '\f')
-			y--;
-		if (ft_isdigit(av[y]) != 1)
-			return (1);
-		y--;
-	}
-	return (0);
 }
 
 int	scan_str(char *av)
@@ -78,7 +39,6 @@ int	scan_str(char *av)
 			return(1);
 		x++;
 	}
-	
 	return (0);
 }
 
@@ -88,6 +48,8 @@ int	check_validity(char *av)
 	int		x;
 
 	x = 0;
+	if (av[0] == '\0')
+		return (1);
 	store = ft_split(av, ' ');
 	while (store[x])
 	{
@@ -127,34 +89,24 @@ void	create_list(t_list **node, int ac, char **av)
 int	main(int ac, char **av)
 {
 	int		check;
+	// int		x;
 	// t_list	*head;
 	// char	**store;
 
 	// head = NULL;
 	check = full_scan(av);
-	if (ac != 1 && check == 0)
-	{
-		
-	}
-	
 	if (ac == 1 || check == 1)
 		write(2, "Error\n", 6);
 	else
 	{
-		write(1, "finew\n", 6);
+		// store = ft_split(av[1], ' ');
+		// x = -1;
 		// while (store[++x])
-		// 	ft_printf("%s\n", store[x]);
-		// if(check_validity(ac, av) == 1)
 		// {
-		// 	write(2, "Error\n", 6);
-		// 	return (0);
+		// 	ft_printf("split: %s\n",store[x]);
 		// }
-		// create_list(&head, ac, av);
-		// while (head)
-		// {
-		// 	ft_printf("content: %d\n",head->content);
-		// 	head = head->next;
-		// }
+		
+		write(1, "finew\n", 6);
 	}
 	return (0);
 }
