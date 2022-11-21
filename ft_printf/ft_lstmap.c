@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonamog2 <yonamog2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 08:41:47 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/09/23 09:45:29 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:17:51 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int))
 {
 	t_list	*tmp;
 	t_list	*cra;
@@ -22,7 +22,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		tmp = NULL;
 		while (lst)
 		{
-			cra = ft_lstnew((*f)(lst->content));
+			cra = ft_lstnew((f)(lst->content));
 			if (!cra)
 			{
 				ft_lstclear(&cra, del);
