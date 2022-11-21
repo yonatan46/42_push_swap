@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/21 23:12:40 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:21:23 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_validity(char *av)
 	int		x;
 
 	x = 0;
-	if (av[0] == '\0')
+	if (av[0] == '\0' || av[0] == ' ')
 		return (1);
 	store = ft_split(av, ' ');
 	while (store[x])
