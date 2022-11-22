@@ -1,2 +1,5 @@
-auto.sh
-*.o
+*.out
+.DS_Store
+.vs/
+.vscode/
+.o/
