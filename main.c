@@ -6,24 +6,23 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/22 19:01:11 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/23 03:25:58 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void free_list(t_list *store)
-// {
-// 	int x;
+void free_list(t_list **store)
+{
+	t_list	*tmp;
 
-// 	x = 0;
-
-// 	while (store)
-// 	{
-// 		free();
-// 	}
-	
-// }
+   while (*store)
+    {
+       tmp = *store;
+       *store = (*store)->next;
+       free(tmp);
+    }
+}
 void	free_func(char **args)
 {
 	int	size;
@@ -44,11 +43,9 @@ int check_duplicate(t_list **head)
 	t_list *tmp2;
 	int x;
 	int y;
-	int size;
 	int dup;
 
 	x = 0;
-	size = ft_lstsize(*head);
 	tmp = (*head); 
 	while (tmp->next)
 	{
@@ -79,14 +76,9 @@ int add_to_list(t_list **data ,char **bunch)
 {
 	int x;
 
-	x = 0;
-	while (bunch[x])
-	{
-		// ft_printf("%d\n", ft_atoi(bunch[x]));
-		// long int res = ft_atoi(bunch[x]);
+	x = -1;
+	while (bunch[++x])
 		ft_lstadd_back(data, ft_lstnew(ft_atoi(bunch[x])));
-		x++;
-	}
 	return (0);
 }
 
@@ -100,8 +92,7 @@ int	create_list_all(t_list **data, char **av)
 	{
 		store = ft_split(av[x], ' ');
 		add_to_list(data, store);
-		if (store)
-			free_func(store);
+		free_func(store);
 		x++;
 	}
 	return(0);
@@ -131,8 +122,6 @@ int	check_validity(char *av)
 	if (av[0] == '\0')
 		return (1);
 	store = ft_split(av, ' ');
-	if (store[0] == NULL)
-		return (1);
 	while (store[x])
 	{
 		if (scan_str(store[x]) == 1)
@@ -142,7 +131,8 @@ int	check_validity(char *av)
 		}
 		x++;
 	}
-	free_func(store);
+	if (store)
+		free_func(store);
 	return (0);
 }
 
@@ -154,7 +144,7 @@ int	full_scan(char **av)
 	while (av[x])
 	{
 		if (check_validity(av[x]) == 1)
-			return(1);
+			exit_prog();
 		x++;
 	}
 	return(0);
@@ -173,15 +163,14 @@ int	full_scan(char **av)
 
 int	main(int ac, char **av)
 {
-	int		check;
 	int		x;
 	t_list	*head;
 	// char	**store;
 
-	head = NULL;
-	check = full_scan(av);
-	if (ac == 1 || check == 1)
-		write(2, "Error\n", 6);
+	head = 0;
+	full_scan(av);
+	if (ac == 1)
+		exit_prog();
 	else
 	{
 		// ft_lstadd_back(&head, ft_lstnew((void *)re));
@@ -195,17 +184,19 @@ int	main(int ac, char **av)
 		// ft_printf("flag: %d\n",head->flag);
 		if (x == 1)
 		{
-			write(2, "Error\n", 6);
-			return(0);
+			if (head)
+				free_list(&head);
+			exit_prog();
 		}
-		
 		// ft_printf("size: %d\n", x);
 		// while (head)
 		// {
 		// 	ft_printf("content: %d\n",head->content);
 		// 	head = head->next;
 		// }
-		write(1, "fine\n", 5);
+		// write(1, "fine\n", 5);
 	}
+	if (head)
+		free_list(&head);
 	return (0);
 }

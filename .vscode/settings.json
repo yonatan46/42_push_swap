@@ -3,6 +3,7 @@
 		"libft.h": "c",
 		"push_swap.h": "c",
 		"sstream": "c",
-		"limits.h": "c"
+		"limits.h": "c",
+		"unistd.h": "c"
 	}
 }

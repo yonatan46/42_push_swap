@@ -6,15 +6,15 @@
 #    By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 22:37:44 by yonamog2          #+#    #+#              #
-#    Updated: 2022/11/22 17:18:49 by yonamog2         ###   ########.fr        #
+#    Updated: 2022/11/22 19:56:15 by yonamog2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = main
+NAME = push_swap
 FILES = main.c test1.c test2.c
 OBJ = $(FILES:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 
 all : $(NAME)
 

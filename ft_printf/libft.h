@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:27:15 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/22 19:00:58 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:39:28 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ typedef struct s_list
 	int				content;
 	struct s_list	*next;
 }	t_list;
+typedef struct s_tools
+{
+	int 	x;
+	int 	sign;
+}	t_tools;
 
+void	exit_prog(void);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, int n);
 void	*ft_calloc(size_t count, size_t size);
