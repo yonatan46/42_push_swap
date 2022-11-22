@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/22 17:52:09 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:01:11 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int add_to_list(t_list **data ,char **bunch)
 	{
 		// ft_printf("%d\n", ft_atoi(bunch[x]));
 		// long int res = ft_atoi(bunch[x]);
-		ft_lstadd_back(data, ft_lstnew(ft_atoi(bunch[x], data)));
+		ft_lstadd_back(data, ft_lstnew(ft_atoi(bunch[x])));
 		x++;
 	}
 	return (0);
