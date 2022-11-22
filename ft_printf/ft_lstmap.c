@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 08:41:47 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/21 14:17:51 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:49:39 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int))
 		tmp = NULL;
 		while (lst)
 		{
-			cra = ft_lstnew((f)(lst->content));
+			cra = ft_lstnew(f(lst->content));
 			if (!cra)
 			{
 				ft_lstclear(&cra, del);

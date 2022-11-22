@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonamog2 <yonamog2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 21:27:16 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/09/23 10:49:25 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:46:11 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,18 @@ void	ft_lstadd_back(t_list **lst, t_list *ne)
 		}
 	}
 }
+//
+//
+//
+//
+
+/**
+ * hello
+ * dkkasd
+ * kljdls
+ * 
+*/
+
+/*
+
+*/
