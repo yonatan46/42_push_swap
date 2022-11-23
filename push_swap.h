@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:04:16 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/20 14:53:06 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/23 07:05:13 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include "./ft_printf/libft.h"
 
+int		create_list_all(t_list **data, char **av);
 void	sa(t_list **head);
 void	sb(t_list **head);
-void	ss(t_list **head);
+void	ss(t_list **head_a, t_list **head_b);
 void	ra(t_list **head);
+void	free_list(t_list **store);
+void	rr(t_list **head_a, t_list **head_b);
+void	rra(t_list **head);
+void	rrb(t_list **head);
 #endif

@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 13:16:15 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/20 14:21:39 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/23 07:05:18 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sa(t_list **head)
 {
 	t_list	*tmp;
 
-	if ((*head) != NULL)
+	if ((*head)->next)
 	{
 		tmp = (*head);
 		(*head) = (*head)->next;
@@ -29,7 +29,7 @@ void	sb(t_list **head)
 {
 	t_list	*tmp;
 
-	if ((*head) && (*head)->next)
+	if ((*head)->next)
 	{
 		tmp = (*head);
 		(*head) = (*head)->next;
@@ -38,10 +38,10 @@ void	sb(t_list **head)
 	}
 }
 
-void	ss(t_list **head)
+void	ss(t_list **head_a, t_list **head_b)
 {
-	sa(head);
-	sb(head);
+	sa(head_a);
+	sb(head_b);
 }
 // void pa(t_list *head)
 // {

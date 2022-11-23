@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/23 03:25:58 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/23 07:06:33 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ int	main(int ac, char **av)
 {
 	int		x;
 	t_list	*head;
+	t_list	*tm;
 	// char	**store;
 
 	head = 0;
@@ -173,28 +174,20 @@ int	main(int ac, char **av)
 		exit_prog();
 	else
 	{
-		// ft_lstadd_back(&head, ft_lstnew((void *)re));
-		// ft_lstadd_back(&head, ft_lstnew((void *)2));
-		// ft_lstadd_back(&head, ft_lstnew((void *)3));
-		// ft_lstadd_back(&head, ft_lstnew((void *)4));
-		// // store = ft_split(av[1], ' ');
-		// head->flag = 0;
 		create_list_all(&head, av);
 		x = check_duplicate(&head);
-		// ft_printf("flag: %d\n",head->flag);
 		if (x == 1)
 		{
-			if (head)
-				free_list(&head);
+			free_list(&head);
 			exit_prog();
 		}
-		// ft_printf("size: %d\n", x);
-		// while (head)
+		rra(&head);
+		tm = head;
+		// while (tm)
 		// {
-		// 	ft_printf("content: %d\n",head->content);
-		// 	head = head->next;
+		// 	ft_printf("content: %d\n",tm->content);
+		// 	tm = tm->next;
 		// }
-		// write(1, "fine\n", 5);
 	}
 	if (head)
 		free_list(&head);
