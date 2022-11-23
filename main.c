@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/23 07:06:33 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/23 07:16:55 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ int	check_validity(char *av)
 	if (av[0] == '\0')
 		return (1);
 	store = ft_split(av, ' ');
+	if (store[0] == NULL)
+		return(1);
 	while (store[x])
 	{
 		if (scan_str(store[x]) == 1)
@@ -161,6 +163,11 @@ int	full_scan(char **av)
 // 	}
 // }
 
+// void do_operation(t_list **head)
+// {
+	
+// }
+
 int	main(int ac, char **av)
 {
 	int		x;
@@ -181,13 +188,12 @@ int	main(int ac, char **av)
 			free_list(&head);
 			exit_prog();
 		}
-		rra(&head);
 		tm = head;
-		// while (tm)
-		// {
-		// 	ft_printf("content: %d\n",tm->content);
-		// 	tm = tm->next;
-		// }
+		while (tm)
+		{
+			ft_printf("content: %d\n",tm->content);
+			tm = tm->next;
+		}
 	}
 	if (head)
 		free_list(&head);
