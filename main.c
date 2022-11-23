@@ -6,23 +6,13 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/23 07:16:55 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/24 03:44:14 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void free_list(t_list **store)
-{
-	t_list	*tmp;
 
-   while (*store)
-    {
-       tmp = *store;
-       *store = (*store)->next;
-       free(tmp);
-    }
-}
 void	free_func(char **args)
 {
 	int	size;
@@ -37,7 +27,7 @@ void	free_func(char **args)
 	free(args);
 }
 
-int check_duplicate(t_list **head)
+int check_duplicate(t_list **stack_a)
 {
 	t_list *tmp;
 	t_list *tmp2;
@@ -46,13 +36,13 @@ int check_duplicate(t_list **head)
 	int dup;
 
 	x = 0;
-	tmp = (*head); 
+	tmp = (*stack_a); 
 	while (tmp->next)
 	{
 		y = 0;
 		dup = tmp->content;
 		// ft_printf("dup: %d\n", dup);
-		tmp2 = (*head);
+		tmp2 = (*stack_a);
 		while (tmp2)
 		{
 			if (y == x)
@@ -78,7 +68,7 @@ int add_to_list(t_list **data ,char **bunch)
 
 	x = -1;
 	while (bunch[++x])
-		ft_lstadd_back(data, ft_lstnew(ft_atoi(bunch[x])));
+		ft_lstadd_back(data, ft_lstnew(ft_atoi(bunch[x], data, bunch)));
 	return (0);
 }
 
@@ -138,7 +128,7 @@ int	check_validity(char *av)
 	return (0);
 }
 
-int	full_scan(char **av)
+int	full_scan(char **av, t_list **head)
 {
 	int x;
 
@@ -146,56 +136,54 @@ int	full_scan(char **av)
 	while (av[x])
 	{
 		if (check_validity(av[x]) == 1)
-			exit_prog();
+			exit_prog(head);
 		x++;
 	}
 	return(0);
 }
-// void	create_list(t_list **node, int ac, char **av)
-// {
-// 	int		y;
-
-// 	y = 0;
-// 	while (++y < ac)
-// 	{
-// 		// int res = ft_atoi(av[y]);
-// 		ft_lstadd_back(node, ft_lstnew(ft_atoi(av[y])));
-// 	}
-// }
-
-// void do_operation(t_list **head)
-// {
-	
-// }
-
 int	main(int ac, char **av)
 {
 	int		x;
-	t_list	*head;
-	t_list	*tm;
+	t_list	*stack_a;
+	// t_list	*stack_b;
+	// t_list	*tm;
+	// t_list	*tm2;
 	// char	**store;
 
-	head = 0;
-	full_scan(av);
+	stack_a = 0;
+	// stack_b = 0;
+	full_scan(av, &stack_a);
 	if (ac == 1)
-		exit_prog();
+		exit_prog(&stack_a);
 	else
 	{
-		create_list_all(&head, av);
-		x = check_duplicate(&head);
+		create_list_all(&stack_a, av);
+		x = check_duplicate(&stack_a);
 		if (x == 1)
 		{
-			free_list(&head);
-			exit_prog();
+			if (stack_a)
+				exit_prog(&stack_a);
 		}
-		tm = head;
-		while (tm)
-		{
-			ft_printf("content: %d\n",tm->content);
-			tm = tm->next;
-		}
+		ft_printf("%d\n\n", ft_printf("%%%"));
+		// pb(&stack_b, &stack_a);
+		// // pb(&stack_b, &stack_a);
+		// tm = stack_a;
+		// while (tm)
+		// {
+		// 	ft_printf("stack_a: %d\n",tm->content);
+		// 	tm = tm->next;
+		// }
+		// tm2 = stack_b;
+		// ft_printf("\n\n");
+		// while (tm2)
+		// {
+		// 	ft_printf("stack_b: %d\n",tm2->content);
+		// 	tm2 = tm2->next;
+		// }
 	}
-	if (head)
-		free_list(&head);
+	if (stack_a)
+		free_list(&stack_a);
+	// if (stack_b)
+	// 	free_list(&stack_b);
 	return (0);
 }

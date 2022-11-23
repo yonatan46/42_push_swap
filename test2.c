@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 13:16:15 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/23 07:06:17 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:25:56 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	ra(t_list **head)
 	(*head) = copy;
 }
 
-void rb(t_list **head)
+void	rb(t_list **head)
 {
-	t_list *copy;
-	t_list *tmp;
-	int x;
-	int res;
+	t_list	*copy;
+	t_list	*tmp;
+	int		x;
+	int		res;
 
 	x = ft_lstsize((*head));
 	res = (*head)->content;
@@ -53,12 +53,14 @@ void rb(t_list **head)
 	free_list(head);
 	(*head) = copy;
 }
-void rr(t_list **head_a, t_list **head_b)
+
+void	rr(t_list **head_a, t_list **head_b)
 {
 	ra(head_a);
 	ra(head_b);
 }
-void rra(t_list **head)
+
+void	rra(t_list **head)
 {
 	t_list	*copy;
 	t_list	*tmp;
@@ -81,7 +83,8 @@ void rra(t_list **head)
 	free_list(head);
 	(*head) = copy;
 }
-void rrb(t_list **head)
+
+void	rrb(t_list **head)
 {
 	t_list	*copy;
 	t_list	*tmp;
@@ -104,7 +107,8 @@ void rrb(t_list **head)
 	free_list(head);
 	(*head) = copy;
 }
-void rrr(t_list **head_a, t_list **head_b)
+
+void	rrr(t_list **head_a, t_list **head_b)
 {
 	rra(head_a);
 	rra(head_b);

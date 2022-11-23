@@ -4,6 +4,9 @@
 		"push_swap.h": "c",
 		"sstream": "c",
 		"limits.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"stdlib.h": "c",
+		"climits": "c",
+		"streambuf": "c"
 	}
 }

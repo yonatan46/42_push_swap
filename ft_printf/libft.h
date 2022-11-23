@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:27:15 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/22 19:39:28 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:15:57 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdint.h>
-
 typedef struct s_list
 {
 	int				content;
@@ -31,8 +30,8 @@ typedef struct s_tools
 	int 	sign;
 }	t_tools;
 
-void	exit_prog(void);
-int		ft_atoi(const char *str);
+void	exit_prog(t_list **head);
+int		ft_atoi(const char *str, t_list **head, char **bunch);
 void	ft_bzero(void *s, int n);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_isalnum(int c);
@@ -84,5 +83,6 @@ int		ft_uns_print(unsigned int n);
 int		ft_ptr_print(unsigned long long ptr);
 int		ft_hex_print(unsigned int num, const char format);
 int		ft_printstr(char *str);
-
+void	free_list(t_list **store);
+void	free_func(char **args);
 #endif
