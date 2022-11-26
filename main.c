@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/25 17:11:11 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/26 22:29:10 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,40 +222,88 @@ void set_index(t_list **head)
 	}
 }
 
+void sort_three(t_list **stack_a)
+{
+	if (((*stack_a)->content > (*stack_a)->next->content) && ((*stack_a)->content < (*stack_a)->next->next->content))
+	{
+		ft_printf("sa\n");
+		sa(stack_a);
+	}
+	else if (((*stack_a)->content > (*stack_a)->next->content) && ((*stack_a)->next->content > (*stack_a)->next->next->content))
+	{
+		ft_printf("sa\n");
+		sa(stack_a);
+		ft_printf("rra\n");
+		rra(stack_a);
+	}
+	else if (((*stack_a)->content > (*stack_a)->next->content) && ((*stack_a)->next->content > (*stack_a)->next->next->content))
+	{
+		ft_printf("sa\n");
+		sa(stack_a);
+		ft_printf("rra\n");
+		rra(stack_a);
+	}
+	else if (((*stack_a)->content > (*stack_a)->next->content) && ((*stack_a)->next->content < (*stack_a)->next->next->content))
+	{
+		ft_printf("ra\n");
+		ra(stack_a);
+	}
+	else if (((*stack_a)->content < (*stack_a)->next->content) && ((*stack_a)->content < (*stack_a)->next->next->content))
+	{
+		ft_printf("sa\n");
+		sa(stack_a);
+		ft_printf("ra\n");
+		ra(stack_a);
+	}
+	else if (((*stack_a)->content < (*stack_a)->next->content) && ((*stack_a)->next->content > (*stack_a)->next->next->content))
+	{
+		ft_printf("rra\n");
+		rra(stack_a);
+	}
+}
+
 void sort_list(t_list **stack_a, t_list **stack_b)
 {
-	t_list *tmp_a;
-	t_list *tmp_b;
-	int x = 5;
+	int		y;
 
-	tmp_a = stack_a;
-	tmp_b = stack_b;
-	while (x >= 0)
+	(void)stack_b;
+	while (check_sort(stack_a))
 	{
-		if (tmp_a->chunk_num % 2 == 0)
+		y = ft_lstsize(*stack_a);
+		while (y)
 		{
-			tmp_a->chunk_num /= 2;
-			// pb(tmp_b, tmp_a);
-			ra(tmp_a);
+			if ((*stack_a)->chunk_num % 2 == 1)
+			{
+				ft_printf("ra\n");
+				(*stack_a)->chunk_num /= 2;
+				ra(stack_a);
+			}
+			else if ((*stack_a)->chunk_num % 2 == 0)
+			{
+				ft_printf("pb\n");
+				(*stack_a)->chunk_num /= 2;
+				pb(stack_b, stack_a);
+			}
+			y--;
 		}
-		else if(tmp_a->chunk_num % 2 == 1)
+		if ((*stack_b))
 		{
-			tmp_a->chunk_num /= 2;
-			pb(tmp_b, tmp_a);
+			while ((*stack_b))
+			{
+				ft_printf("p a\n");
+				pa(stack_a, stack_b);
+			}
 		}
-		x-- ;
-		
 	}
-	
 }
 int	main(int ac, char **av)
 {
 	int		x;
 	t_list	*stack_a;
 	t_list	*stack_b;
-	t_list	*tm;
+	// t_list	*tm;
 	// t_list	*tm2;
-	// char	**store;
+	// // char	**store;
 
 	stack_a = 0;
 	stack_b = 0;
@@ -277,23 +325,27 @@ int	main(int ac, char **av)
 		if (check_sort(&stack_a) == 0)
 			exit(0);
 		set_index(&stack_a);
+		// sort_list(&stack_a, &stack_b);
+		if (ft_lstsize(stack_a) == 3)
+			sort_three(&stack_a);
 		// int y = 10;
 		// ft_printf("%d\n", y >> 1);
 		// do_op(&stack_a, &stack_b);
 		// ss(&stack_a, &stack_b);
 		// tm2 = stack_b;
-		//simple print debug
-		tm = stack_a;
-		while (tm)
-		{
-			ft_printf("stack_a[%d](%d): %d\n",tm->index , tm->chunk_num, tm->content);
-			tm = tm->next;
-		}
+		// //simple print debug
+		// tm = stack_a;
+		// while (tm)
+		// {
+		// 	// ft_printf("stack_a[%d](%d): %d\n",tm->index , tm->chunk_num, tm->content);
+		// 	ft_printf("%d\n",tm->content);
+		// 	tm = tm->next;
+		// }
 		// tm2 = stack_b;
 		// ft_printf("\n\n");
 		// while (tm2)
 		// {
-		// 	ft_printf("stack_b: %d\n",tm2->content);
+		// 	ft_printf("stack_b[%d](%d): %d\n",tm2->index , tm2->chunk_num, tm2->content);
 		// 	tm2 = tm2->next;
 		// }
 	}

@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 13:16:15 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/24 17:28:17 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/26 18:59:01 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,42 @@ void	ra(t_list **head)
 {
 	t_list	*copy;
 	t_list	*tmp;
-	int		x;
-	int		res;
+	t_list	*tmp1;
 
 	if ((*head))
 	{
-		x = ft_lstsize((*head));
-		res = (*head)->content;
+		tmp1 = (*head);
 		tmp = (*head)->next;
-		copy = 0;
-		while (--x && tmp)
+		(*head) = tmp;
+		copy = (*head);
+		tmp1->next = NULL;
+		copy = (*head);
+		while (copy->next)
 		{
-			ft_lstadd_back(&copy, ft_lstnew(tmp->content));
-			tmp = tmp->next;
+			copy = copy->next;
 		}
-		ft_lstadd_back(&copy, ft_lstnew(res));
-		free_list(head);
-		(*head) = copy;
+		copy->next = tmp1;
 	}
-	
 }
 
 void	rb(t_list **head)
 {
 	t_list	*copy;
 	t_list	*tmp;
-	int		x;
-	int		res;
+	t_list	*tmp1;
 
 	if ((*head))
 	{
-		x = ft_lstsize((*head));
-		res = (*head)->content;
+		tmp1 = (*head);
 		tmp = (*head)->next;
-		copy = 0;
-		while (--x && tmp)
-		{
-			ft_lstadd_back(&copy, ft_lstnew(tmp->content));
-			tmp = tmp->next;
-		}
-		ft_lstadd_back(&copy, ft_lstnew(res));
-		free_list(head);
-		(*head) = copy;
+		(*head) = tmp;
+		copy = (*head);
+		tmp1->next = NULL;
+		copy = (*head);
+		while (copy->next)
+			copy = copy->next;
+		copy->next = tmp1;
 	}
-	
 }
 
 void	rr(t_list **head_a, t_list **head_b)
@@ -72,53 +64,36 @@ void	rra(t_list **head)
 {
 	t_list	*copy;
 	t_list	*tmp;
-	int		x;
-	int		res;
+	t_list	*tmp1;
 
 	if ((*head))
 	{
-		x = ft_lstsize((*head));
 		tmp = (*head);
-		copy = 0;
-		while (tmp->next)
+		while (tmp->next->next)
 			tmp = tmp->next;
-		res = tmp->content;
-		tmp = (*head);
-		ft_lstadd_back(&copy, ft_lstnew(res));
-		while (x-- && tmp->next)
-		{
-			ft_lstadd_back(&copy, ft_lstnew(tmp->content));
-			tmp = tmp->next;
-		}
-		free_list(head);
+		copy = tmp->next;
+		tmp->next = NULL;
+		tmp1 = (*head);
+		copy->next = tmp1;
 		(*head) = copy;
 	}
-	
 }
 
 void	rrb(t_list **head)
 {
 	t_list	*copy;
 	t_list	*tmp;
-	int		x;
-	int		res;
+	t_list	*tmp1;
 
-	if (*head)
+	if ((*head))
 	{
-		x = ft_lstsize((*head));
 		tmp = (*head);
-		copy = 0;
-		while (tmp->next)
+		while (tmp->next->next)
 			tmp = tmp->next;
-		res = tmp->content;
-		tmp = (*head);
-		ft_lstadd_back(&copy, ft_lstnew(res));
-		while (x-- && tmp->next)
-		{
-			ft_lstadd_back(&copy, ft_lstnew(tmp->content));
-			tmp = tmp->next;
-		}
-		free_list(head);
+		copy = tmp->next;
+		tmp->next = NULL;
+		tmp1 = (*head);
+		copy->next = tmp1;
 		(*head) = copy;
 	}
 }
