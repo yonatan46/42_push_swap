@@ -62,6 +62,7 @@ int check_duplicate(t_list **stack_a)
 	}
 	return (0);
 }
+
 int add_to_list(t_list **data ,char **bunch)
 {
 	int x;
@@ -87,6 +88,7 @@ int	create_list_all(t_list **data, char **av)
 	}
 	return(0);
 }
+
 int	scan_str(char *av)
 {
 	int	x;
@@ -164,30 +166,87 @@ int check_sort(t_list **stack_a)
 	}
 	return(0);
 }
-void do_op(t_list **stack_a, t_list **stack_b)
+void set_chunk_number(t_list **head)
 {
-	int pre;
+	t_list *tmp;
 
-	(void)stack_b;
-	pre = 0;
-	if((*stack_a))
+	tmp = (*head);
+	while (tmp->next)
 	{
-		while (check_sort(stack_a) == 1 || (*stack_b))
+		tmp->chunk_num = 0;
+		tmp = tmp->next;	
+	}	
+}
+int validate_chunk(t_list **head)
+{
+	t_list *tmp;
+
+	tmp = (*head);
+	while (tmp->next)
+	{
+		if (tmp->chunk_num == 0)
+			return(1);
+		tmp = tmp->next;	
+	}	
+	return(0);
+}
+
+void set_index(t_list **head)
+{
+	int x;
+	int count;
+	t_list *tmp;
+	t_list *tmp1;
+
+	x = 0;
+	tmp = (*head);
+	while (tmp)
+	{
+		tmp->index = x;
+		tmp = tmp->next;
+		x++;
+	}
+	tmp = (*head);
+	while (tmp)
+	{
+		tmp1 = (*head);
+		count = 1;
+		while (tmp1)
 		{
-			if (((*stack_a)->content > (*stack_a)->next->content) && 
-				((*stack_a)->content > pre))
-			{
-				pre = (*stack_a)->content;
-				ra(stack_a);
-				ft_printf("ra\n");
-				sa(stack_a);
-				ft_printf("sa\n");
-				pb(stack_b, stack_a);
-			}
-			
+			if (tmp1->content < tmp->content)
+				count++;
+			tmp1 = tmp1->next;
 		}
+		tmp->chunk_num = count;
+		tmp = tmp->next;
+	}
+}
+
+void sort_list(t_list **stack_a, t_list **stack_b)
+{
+	t_list *tmp_a;
+	t_list *tmp_b;
+	int x = 5;
+
+	tmp_a = stack_a;
+	tmp_b = stack_b;
+	while (x >= 0)
+	{
+		if (tmp_a->chunk_num % 2 == 0)
+		{
+			tmp_a->chunk_num /= 2;
+			// pb(tmp_b, tmp_a);
+			ra(tmp_a);
+		}
+		else if(tmp_a->chunk_num % 2 == 1)
+		{
+			tmp_a->chunk_num /= 2;
+			pb(tmp_b, tmp_a);
+		}
+		x-- ;
 		
 	}
+	
 }
 int	main(int ac, char **av)
 {
@@ -217,14 +276,17 @@ int	main(int ac, char **av)
 		}
 		if (check_sort(&stack_a) == 0)
 			exit(0);
-		do_op(&stack_a, &stack_b);
-		tm = stack_a;
+		set_index(&stack_a);
+		// int y = 10;
+		// ft_printf("%d\n", y >> 1);
+		// do_op(&stack_a, &stack_b);
+		// ss(&stack_a, &stack_b);
 		// tm2 = stack_b;
 		//simple print debug
 		tm = stack_a;
 		while (tm)
 		{
-			ft_printf("stack_a: %d\n",tm->content);
+			ft_printf("stack_a[%d](%d): %d\n",tm->index , tm->chunk_num, tm->content);
 			tm = tm->next;
 		}
 		// tm2 = stack_b;

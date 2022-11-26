@@ -22,6 +22,8 @@
 typedef struct s_list
 {
 	int				content;
+	int				index;
+	int				chunk_num;
 	struct s_list	*next;
 }	t_list;
 typedef struct s_tools
