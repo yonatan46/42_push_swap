@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/27 18:43:42 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/27 23:06:08 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,19 +291,30 @@ void sort_list_second(t_list **stack_a, t_list **stack_b)
 				if (i <= x / 2)
 				{
 					while (--i)
+					{
+						ft_printf("ra\n");
 						ra(stack_a);
+					}
+					ft_printf("pb\n");
 					pb(stack_b, stack_a);
 				}
 				else
 				{
 					while (++i <= x + 2)
+					{
+						ft_printf("rra\n");
 						rra(stack_a);
+					}
+					ft_printf("pb\n");
 					pb(stack_b, stack_a);
 				}
 				if (end == 20 && size <= end - 10)
 					set_index(stack_a);
 				else if(tmp->chunk_num <= end - 10)
+				{
+					ft_printf("pb\n");
 					rb(stack_b);
+				}
 				set_index(stack_a);
 				tmp = (*stack_a);
 			}
@@ -313,13 +324,8 @@ void sort_list_second(t_list **stack_a, t_list **stack_b)
 		start += 20;
 		end   += 20;
 	}
-
-	// ft_printf("start: %d\n",start);
-	// start = ft_lstsize(*stack_b);
-	
+	// ft_printf("----------finished: pushing to b------------\n");
 	set_index(stack_b);
-	start = 20;
-	printf("----------The start is : %i------------", start);
 	while (start >= 1)
 	{
 		while (ft_lstsize(*stack_b) >= start)
@@ -336,20 +342,70 @@ void sort_list_second(t_list **stack_a, t_list **stack_b)
 					x = tmp->index;
 					if (x <= i / 2)
 						while (--x)
+						{
+							ft_printf("rb\n");
 							rb(stack_b);
+						}
 					else
 						while (++x != i + 2)
-							rrb(stack_b);	
+						{
+							ft_printf("rrb\n");
+							rrb(stack_b);
+						}
+					ft_printf("pa\n");
 					pa(stack_a, stack_b);
 					size--;
 					set_index(stack_b);
 					tmp = *stack_b;
+					// ft_printf("----------pushed: %d------------\n", (*stack_a)->content);
+					// ft_printf("----------start: %d------------\n", start);
+					// ft_printf("----------size: %d------------\n", size);
 				}
 			}
 		}
 		start = start - 20;
+		// ft_printf("----------start at end: %d------------\n", start);
 	}
-		
+	set_index(stack_b);
+	if (start >= 0 && start < 20)
+	{
+		// ft_printf("----------finished: first pa------------\n");
+		while (ft_lstsize(*stack_b) > 0)
+		{
+			tmp = (*stack_b);
+			size = ft_lstsize(*stack_b);
+			while (tmp != NULL && size != 0)
+			{
+				i = ft_lstsize(*stack_b);
+				while (tmp->chunk_num != size)
+					tmp = tmp->next;
+				if (tmp->chunk_num == size)
+				{
+					x = tmp->index;
+					if (x <= i / 2)
+						while (--x)
+						{
+							ft_printf("rb\n");
+							rb(stack_b);
+						}
+					else
+						while (++x < i + 2)
+						{
+							ft_printf("rrb\n");
+							rrb(stack_b);
+						}
+					ft_printf("pa\n");
+					pa(stack_a, stack_b);
+					size--;
+					set_index(stack_b);
+					tmp = (*stack_b);
+				}
+			}
+		}
+		// ft_printf("----------finished: last pa------------\n");
+		set_index(stack_a);
+		// ft_printf(" stack_a: %d\n", (*stack_a)->content);
+	}
 }
 
 void sort_list(t_list **stack_a, t_list **stack_b)
@@ -391,10 +447,9 @@ int	main(int ac, char **av)
 	int		x;
 	t_list	*stack_a;
 	t_list	*stack_b;
-	t_list	*tm;
-	t_list	*tm2;
+	// t_list	*tm;
+	// t_list	*tm2;
 	// char	**store;
-
 	stack_a = 0;
 	stack_b = 0;
 	full_scan(av, &stack_a);
@@ -427,24 +482,24 @@ int	main(int ac, char **av)
 		// set_index(&stack_a);
 		// tm2 = stack_b;
 		// // //simple print debug
-		pb(&stack_b, &stack_a);
-		pa(&stack_a, &stack_b);
+		// pb(&stack_b, &stack_a);
+		// pa(&stack_a, &stack_b);
 		// rb(&stack_b);
-		tm = stack_a;
-		while (tm)
-		{
-			ft_printf("stack_a[%d](%d): %d\n",tm->index , tm->chunk_num, tm->content);
-			// ft_printf("%d\n",tm->content);
-			tm = tm->next;
-		}
+		// tm = stack_a;
+		// while (tm)
+		// {
+		// 	ft_printf("stack_a[%d](%d): %d\n",tm->index , tm->chunk_num, tm->content);
+		// 	// ft_printf("%d\n",tm->content);
+		// 	tm = tm->next;
+		// }
 		
-		tm2 = stack_b;
-		ft_printf("\n\n");
-		while (tm2)
-		{
-			ft_printf("stack_b[%d](%d): %d\n",tm2->index , tm2->chunk_num, tm2->content);
-			tm2 = tm2->next;
-		}
+		// tm2 = stack_b;
+		// ft_printf("\n\n");
+		// while (tm2)
+		// {
+		// 	ft_printf("stack_b[%d](%d): %d\n",tm2->index , tm2->chunk_num, tm2->content);
+		// 	tm2 = tm2->next;
+		// }
 	}
 	if (stack_a)
 		free_list(&stack_a);
