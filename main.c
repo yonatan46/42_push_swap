@@ -276,9 +276,6 @@ void sort_list_second(t_list **stack_a, t_list **stack_b)
 	int start;
 	int end;
 
-	(void)stack_a;
-	(void)stack_b;
-
 	start = 0;
 	end  = 20;
 	while (*stack_a && end <= 100)
@@ -303,9 +300,9 @@ void sort_list_second(t_list **stack_a, t_list **stack_b)
 						rra(stack_a);
 					pb(stack_b, stack_a);
 				}
-				if (end == 20 && x <= end - 10)
+				if (end == 20 && size <= end - 10)
 					set_index(stack_a);
-				else
+				else if(tmp->chunk_num <= end - 10)
 					rb(stack_b);
 				set_index(stack_a);
 				tmp = (*stack_a);
@@ -313,9 +310,46 @@ void sort_list_second(t_list **stack_a, t_list **stack_b)
 			else
 				tmp = tmp->next;		
 		}
-		start+=20;
-		end+=20;
+		start += 20;
+		end   += 20;
 	}
+
+	// ft_printf("start: %d\n",start);
+	// start = ft_lstsize(*stack_b);
+	
+	set_index(stack_b);
+	start = 20;
+	printf("----------The start is : %i------------", start);
+	while (start >= 1)
+	{
+		while (ft_lstsize(*stack_b) >= start)
+		{
+			tmp = (*stack_b);
+			size = ft_lstsize(*stack_b);
+			while (tmp != NULL && size != start - 1)
+			{
+				i = ft_lstsize(*stack_b);
+				while (tmp->chunk_num != size)
+					tmp = tmp->next;
+				if (tmp->chunk_num == size)
+				{
+					x = tmp->index;
+					if (x <= i / 2)
+						while (--x)
+							rb(stack_b);
+					else
+						while (++x != i + 2)
+							rrb(stack_b);	
+					pa(stack_a, stack_b);
+					size--;
+					set_index(stack_b);
+					tmp = *stack_b;
+				}
+			}
+		}
+		start = start - 20;
+	}
+		
 }
 
 void sort_list(t_list **stack_a, t_list **stack_b)
@@ -393,7 +427,8 @@ int	main(int ac, char **av)
 		// set_index(&stack_a);
 		// tm2 = stack_b;
 		// // //simple print debug
-		// pb(&stack_b, &stack_a);
+		pb(&stack_b, &stack_a);
+		pa(&stack_a, &stack_b);
 		// rb(&stack_b);
 		tm = stack_a;
 		while (tm)
