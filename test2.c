@@ -18,7 +18,7 @@ void	ra(t_list **head)
 	t_list	*tmp;
 	t_list	*tmp1;
 
-	if ((*head))
+	if ((*head)->next)
 	{
 		tmp1 = (*head);
 		tmp = (*head)->next;
@@ -40,7 +40,7 @@ void	rb(t_list **head)
 	t_list	*tmp;
 	t_list	*tmp1;
 
-	if ((*head))
+	if ((*head)->next)
 	{
 		tmp1 = (*head);
 		tmp = (*head)->next;
@@ -66,7 +66,7 @@ void	rra(t_list **head)
 	t_list	*tmp;
 	t_list	*tmp1;
 
-	if ((*head))
+	if ((*head)->next)
 	{
 		tmp = (*head);
 		while (tmp->next->next)
@@ -85,7 +85,7 @@ void	rrb(t_list **head)
 	t_list	*tmp;
 	t_list	*tmp1;
 
-	if ((*head))
+	if ((*head)->next)
 	{
 		tmp = (*head);
 		while (tmp->next->next)

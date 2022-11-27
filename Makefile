@@ -14,7 +14,7 @@ NAME = push_swap
 FILES = main.c test1.c test2.c
 OBJ = $(FILES:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
 all : $(NAME)
 
