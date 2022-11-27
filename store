@@ -1,0 +1,207 @@
+	// else if (tmp->chunk_num > 10 && tmp->chunk_num <= 20)
+			// {
+			// 	if (tmp->index <= ft_lstsize(*stack_a)/2)
+			// 	{
+			// 		x = tmp->index - 1;
+			// 		while (x)
+			// 		{
+			// 			ra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// 	else
+			// 	{
+			// 		x = (ft_lstsize(*stack_a) - tmp->index) + 1;
+			// 		while (x)
+			// 		{
+			// 			rra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// }
+			// else if (tmp->chunk_num > 20 && tmp->chunk_num <= 30)
+			// {
+			// 		if (tmp->index <= ft_lstsize(*stack_a)/2)
+			// 	{
+			// 		x = tmp->index - 1;
+			// 		while (x)
+			// 		{
+			// 			ra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// 	else
+			// 	{
+			// 		x = (ft_lstsize(*stack_a) - tmp->index) + 1;
+			// 		while (x)
+			// 		{
+			// 			rra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// }
+			// else if (tmp->chunk_num > 30 && tmp->chunk_num <= 40)
+			// {
+			// 	if (tmp->index <= ft_lstsize(*stack_a)/2)
+			// 	{
+			// 		x = tmp->index - 1;
+			// 		while (x)
+			// 		{
+			// 			ra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// 	else
+			// 	{
+			// 		x = (ft_lstsize(*stack_a) - tmp->index) + 1;
+			// 		while (x)
+			// 		{
+			// 			rra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// }
+			// else if (tmp->chunk_num > 40 && tmp->chunk_num <= 50)
+			// {
+			// 	if (tmp->index <= ft_lstsize(*stack_a)/2)
+			// 	{
+			// 		x = tmp->index - 1;
+			// 		while (x)
+			// 		{
+			// 			ra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// 	else
+			// 	{
+			// 		x = (ft_lstsize(*stack_a) - tmp->index) + 1;
+			// 		while (x)
+			// 		{
+			// 			rra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// }
+			// else if (tmp->chunk_num > 50 && tmp->chunk_num <= 60)
+			// {
+			// 		if (tmp->index <= ft_lstsize(*stack_a)/2)
+			// 	{
+			// 		x = tmp->index - 1;
+			// 		while (x)
+			// 		{
+			// 			ra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// 	else
+			// 	{
+			// 		x = (ft_lstsize(*stack_a) - tmp->index) + 1;
+			// 		while (x)
+			// 		{
+			// 			rra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// }
+			// else if (tmp->chunk_num > 60 && tmp->chunk_num <= 70)
+			// {
+			// 		if (tmp->index <= ft_lstsize(*stack_a)/2)
+			// 	{
+			// 		x = tmp->index - 1;
+			// 		while (x)
+			// 		{
+			// 			ra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// 	else
+			// 	{
+			// 		x = (ft_lstsize(*stack_a) - tmp->index) + 1;
+			// 		while (x)
+			// 		{
+			// 			rra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// }
+			// else if (tmp->chunk_num > 70 && tmp->chunk_num <= 80)
+			// {
+			// 		if (tmp->index <= ft_lstsize(*stack_a)/2)
+			// 	{
+			// 		x = tmp->index - 1;
+			// 		while (x)
+			// 		{
+			// 			ra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// 	else
+			// 	{
+			// 		x = (ft_lstsize(*stack_a) - tmp->index) + 1;
+			// 		while (x)
+			// 		{
+			// 			rra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// }
+			// else if (tmp->chunk_num > 80 && tmp->chunk_num <= 90)
+			// {
+			// 		if (tmp->index <= ft_lstsize(*stack_a)/2)
+			// 	{
+			// 		x = tmp->index - 1;
+			// 		while (x)
+			// 		{
+			// 			ra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// 	else
+			// 	{
+			// 		x = (ft_lstsize(*stack_a) - tmp->index) + 1;
+			// 		while (x)
+			// 		{
+			// 			rra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// }
+			// else if (tmp->chunk_num > 90 && tmp->chunk_num <= 100)
+			// {
+			// 	if (tmp->index <= ft_lstsize(*stack_a)/2)
+			// 	{
+			// 		x = tmp->index - 1;
+			// 		while (x)
+			// 		{
+			// 			ra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// 	else
+			// 	{
+			// 		x = (ft_lstsize(*stack_a) - tmp->index) + 1;
+			// 		while (x)
+			// 		{
+			// 			rra(stack_a);
+			// 			x--;
+			// 		}
+			// 		pb(stack_b, stack_a);
+			// 	}
+			// }

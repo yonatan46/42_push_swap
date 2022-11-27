@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 09:03:42 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/26 22:29:10 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/27 18:43:42 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,106 +267,91 @@ void sort_three(t_list **stack_a)
 	}
 }
 
-void sort_list(t_list **stack_a, t_list **stack_b)
+void sort_list_second(t_list **stack_a, t_list **stack_b)
 {
-	int x;
-	// int x1;
-	int re;
-	// int perm;
 	t_list *tmp;
+	int x;
+	int i;
+	int size;
+	int start;
+	int end;
 
 	(void)stack_a;
 	(void)stack_b;
-	// x1 = 1;
-	x = ft_lstsize(*stack_a);
-	// perm = ft_lstsize(*stack_a);
-	// ft_printf("%d\n",perm);
-	while (x)
+
+	start = 0;
+	end  = 20;
+	while (*stack_a && end <= 100)
 	{
 		tmp = (*stack_a);
-		set_index(stack_a);
+		size = ft_lstsize(*stack_a);
 		while (tmp)
 		{
-			if (tmp->chunk_num == 13 - x)
+			if (tmp->chunk_num >= start && tmp->chunk_num <= end)
 			{
-
-				ft_printf("tmp:[%d](%d): %d\n",tmp->index , tmp->chunk_num, tmp->content);
-				if (tmp->index == 1)
-					pb(stack_b, stack_a);
-				else if(tmp->index > ft_lstsize(*stack_a)/2)
+				i = tmp->index;
+				x = ft_lstsize(*stack_a);
+				if (i <= x / 2)
 				{
-					re = ft_lstsize(*stack_a) - tmp->index;
-					while(re)
-					{
-						rra(stack_a);
-						re--;
-					}
-					rra(stack_a);
-					pb(stack_b, stack_a);
-				}
-				else if (tmp->index <= (ft_lstsize(*stack_a)/2))
-				{
-					re = tmp->index;
-					while (--re)
-					{
+					while (--i)
 						ra(stack_a);
-						re--;
-					}
 					pb(stack_b, stack_a);
 				}
-				
-		// 		// ft_printf("chunk[%d]\n",tmp->chunk_num);
-		// 		// ft_printf("index[%d]\n",tmp->index);
-		// 		// set_index(stack_a);
-				break;
+				else
+				{
+					while (++i <= x + 2)
+						rra(stack_a);
+					pb(stack_b, stack_a);
+				}
+				if (end == 20 && x <= end - 10)
+					set_index(stack_a);
+				else
+					rb(stack_b);
+				set_index(stack_a);
+				tmp = (*stack_a);
 			}
-			tmp = tmp->next;
+			else
+				tmp = tmp->next;		
 		}
-		x--;
-		// x1++;
+		start+=20;
+		end+=20;
 	}
-	// x = ft_lstsize(*stack_b);
-	// while (x)
-	// {
-	// 	/* code */
-	// }
-	
 }
 
-// void sort_list(t_list **stack_a, t_list **stack_b)
-// {
-// 	int		y;
+void sort_list(t_list **stack_a, t_list **stack_b)
+{
+	int		y;
 
-// 	(void)stack_b;
-// 	while (check_sort(stack_a))
-// 	{
-// 		y = ft_lstsize(*stack_a);
-// 		while (y)
-// 		{
-// 			if ((*stack_a)->chunk_num % 2 == 1)
-// 			{
-// 				ft_printf("ra\n");
-// 				(*stack_a)->chunk_num /= 2;
-// 				ra(stack_a);
-// 			}
-// 			else if ((*stack_a)->chunk_num % 2 == 0)
-// 			{
-// 				ft_printf("pb\n");
-// 				(*stack_a)->chunk_num /= 2;
-// 				pb(stack_b, stack_a);
-// 			}
-// 			y--;
-// 		}
-// 		if ((*stack_b))
-// 		{
-// 			while ((*stack_b))
-// 			{
-// 				ft_printf("pa\n");
-// 				pa(stack_a, stack_b);
-// 			}
-// 		}
-// 	}
-// }
+	while (check_sort(stack_a))
+	{
+		y = ft_lstsize(*stack_a);
+		while (y)
+		{
+			if ((*stack_a)->chunk_num % 2 == 1)
+			{
+				ft_printf("ra\n");
+				(*stack_a)->chunk_num /= 2;
+				ra(stack_a);
+			}
+			else if ((*stack_a)->chunk_num % 2 == 0)
+			{
+				ft_printf("pb\n");
+				(*stack_a)->chunk_num /= 2;
+				pb(stack_b, stack_a);
+			}
+			y--;
+		}
+		if ((*stack_b))
+		{
+			while ((*stack_b))
+			{
+				ft_printf("pa\n");
+				pa(stack_a, stack_b);
+			}
+		}
+	}
+}
+
 int	main(int ac, char **av)
 {
 	int		x;
@@ -397,17 +382,19 @@ int	main(int ac, char **av)
 			exit(0);
 		set_index(&stack_a);
 		set_chunk_num(&stack_a);
-		// if (ft_lstsize(stack_a) == 3)
-		// 	sort_three(&stack_a);
-		// else
-			sort_list(&stack_a, &stack_b);
+		if (ft_lstsize(stack_a) == 3)
+			sort_three(&stack_a);
+		else
+			sort_list_second(&stack_a, &stack_b);
 		// int y = 10;
 		// ft_printf("%d\n", y >> 1);
 		// do_op(&stack_a, &stack_b);
 		// ss(&stack_a, &stack_b);
 		// set_index(&stack_a);
-		tm2 = stack_b;
-		// //simple print debug
+		// tm2 = stack_b;
+		// // //simple print debug
+		// pb(&stack_b, &stack_a);
+		// rb(&stack_b);
 		tm = stack_a;
 		while (tm)
 		{
@@ -415,6 +402,7 @@ int	main(int ac, char **av)
 			// ft_printf("%d\n",tm->content);
 			tm = tm->next;
 		}
+		
 		tm2 = stack_b;
 		ft_printf("\n\n");
 		while (tm2)
