@@ -22,7 +22,11 @@
 typedef struct s_list
 {
 	int				content;
+	int				cost_a;
+	int				cost_b;
 	int				index;
+	int				pos;
+	int				target_pos;
 	int				chunk_num;
 	struct s_list	*next;
 }	t_list;

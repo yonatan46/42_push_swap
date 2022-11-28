@@ -227,46 +227,41 @@ void set_chunk_num(t_list **head)
 		tmp = tmp->next;
 	}
 }
-void sort_three(t_list **stack_a)
+
+int	find_highest_index(t_list *stack)
 {
-	if (((*stack_a)->content > (*stack_a)->next->content) && ((*stack_a)->content < (*stack_a)->next->next->content))
+	int		index;
+
+	index = stack->chunk_num;
+	while (stack)
 	{
-		ft_printf("sa\n");
-		sa(stack_a);
+		if (stack->chunk_num > index)
+			index = stack->chunk_num;
+		stack = stack->next;
 	}
-	else if (((*stack_a)->content > (*stack_a)->next->content) && ((*stack_a)->next->content > (*stack_a)->next->next->content))
-	{
-		ft_printf("sa\n");
-		sa(stack_a);
-		ft_printf("rra\n");
-		rra(stack_a);
-	}
-	else if (((*stack_a)->content > (*stack_a)->next->content) && ((*stack_a)->next->content > (*stack_a)->next->next->content))
-	{
-		ft_printf("sa\n");
-		sa(stack_a);
-		ft_printf("rra\n");
-		rra(stack_a);
-	}
-	else if (((*stack_a)->content > (*stack_a)->next->content) && ((*stack_a)->next->content < (*stack_a)->next->next->content))
-	{
-		ft_printf("ra\n");
-		ra(stack_a);
-	}
-	else if (((*stack_a)->content < (*stack_a)->next->content) && ((*stack_a)->content < (*stack_a)->next->next->content))
-	{
-		ft_printf("sa\n");
-		sa(stack_a);
-		ft_printf("ra\n");
-		ra(stack_a);
-	}
-	else if (((*stack_a)->content < (*stack_a)->next->content) && ((*stack_a)->next->content > (*stack_a)->next->next->content))
-	{
-		ft_printf("rra\n");
-		rra(stack_a);
-	}
+	return (index);
 }
 
+void sort_three(t_list **stack)
+{
+	int		highest;
+	highest = find_highest_index(*stack);
+	if ((*stack)->chunk_num == highest)
+	{
+		ft_printf("ra\n");
+		ra(stack);
+	}
+	else if ((*stack)->next->chunk_num == highest)
+	{
+		ft_printf("rra\n");
+		rra(stack);
+	}
+	if ((*stack)->chunk_num > (*stack)->next->chunk_num)
+	{
+		ft_printf("sa\n");
+		sa(stack);
+	}
+}
 void sort_list_second(t_list **stack_a, t_list **stack_b)
 {
 	t_list *tmp;
@@ -442,12 +437,285 @@ void sort_list(t_list **stack_a, t_list **stack_b)
 	}
 }
 
+void		push_all_save_three(t_list **stack_a, t_list **stack_b)
+{
+	int	stack_size;
+	int	pushed;
+	int	i;
+
+	stack_size = ft_lstsize(*stack_a);
+	pushed = 0;
+	i = 0;
+	while (stack_size > 6 && i < stack_size && pushed < stack_size / 2)
+	{
+		if ((*stack_a)->index <= stack_size / 2)
+		{
+			ft_printf("pb\n");
+			pb(stack_b, stack_a);
+			pushed++;
+		}
+		else
+		{
+			ft_printf("ra\n");
+			ra(stack_a);
+		}
+		i++;
+	}
+	while (stack_size - pushed > 3)
+	{
+		ft_printf("pb\n");
+		pb(stack_b, stack_a);
+		pushed++;
+	}
+}
+static void	do_rev_rotate_both(t_list **a, t_list **b,
+												int *cost_a, int *cost_b)
+{
+	while (*cost_a < 0 && *cost_b < 0)
+	{
+		(*cost_a)++;
+		(*cost_b)++;
+		ft_printf("rrr\n");
+		rrr(a, b);
+	}
+}
+static void	do_rotate_both(t_list **a, t_list **b, int *cost_a, int *cost_b)
+{
+	while (*cost_a > 0 && *cost_b > 0)
+	{
+		(*cost_a)--;
+		(*cost_b)--;
+		ft_printf("rr\n");
+		rr(a, b);
+	}
+}
+static void	do_rotate_a(t_list **a, int *cost)
+{
+	while (*cost)
+	{
+		if (*cost > 0)
+		{
+			ft_printf("ra\n");
+			ra(a);
+			(*cost)--;
+		}
+		else if (*cost < 0)
+		{
+			ft_printf("rra\n");
+			rra(a);
+			(*cost)++;
+		}
+	}
+}
+static void	do_rotate_b(t_list **b, int *cost)
+{
+	while (*cost)
+	{
+		if (*cost > 0)
+		{
+			ft_printf("rb\n");
+			rb(b);
+			(*cost)--;
+		}
+		else if (*cost < 0)
+		{
+			ft_printf("rrb\n");
+			rrb(b);
+			(*cost)++;
+		}
+	}
+}
+
+void	do_move(t_list **a, t_list **b, int cost_a, int cost_b)
+{
+	if (cost_a < 0 && cost_b < 0)
+		do_rev_rotate_both(a, b, &cost_a, &cost_b);
+	else if (cost_a > 0 && cost_b > 0)
+		do_rotate_both(a, b, &cost_a, &cost_b);
+	do_rotate_a(a, &cost_a);
+	do_rotate_b(b, &cost_b);
+	ft_printf("pa\n");
+	pa(a, b);
+}
+int	nb_abs(int nb)
+{
+	if (nb < 0)
+		return (nb * -1);
+	return (nb);
+}
+void	do_cheapest_move(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*tmp;
+	int		cheapest;
+	int		cost_a;
+	int		cost_b;
+
+	tmp = *stack_b;
+	cheapest = INT_MAX;
+	while (tmp)
+	{
+		if (nb_abs(tmp->cost_a) + nb_abs(tmp->cost_b) < nb_abs(cheapest))
+		{
+			cheapest = nb_abs(tmp->cost_b) + nb_abs(tmp->cost_a);
+			cost_a = tmp->cost_a;
+			cost_b = tmp->cost_b;
+		}
+		tmp = tmp->next;
+	}
+	do_move(stack_a, stack_b, cost_a, cost_b);
+}
+
+void	get_cost(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*tmp_a;
+	t_list	*tmp_b;
+	int		size_a;
+	int		size_b;
+
+	tmp_a = *stack_a;
+	tmp_b = *stack_b;
+	size_a = ft_lstsize(tmp_a);
+	size_b = ft_lstsize(tmp_b);
+	while (tmp_b)
+	{
+		tmp_b->cost_b = tmp_b->pos;
+		if (tmp_b->pos > size_b / 2)
+			tmp_b->cost_b = (size_b - tmp_b->pos) * -1;
+		tmp_b->cost_a = tmp_b->target_pos;
+		if (tmp_b->target_pos > size_a / 2)
+			tmp_b->cost_a = (size_a - tmp_b->target_pos) * -1;
+		tmp_b = tmp_b->next;
+	}
+}
+
+static int	get_target(t_list **a, int b_idx,
+								int target_idx, int target_pos)
+{
+	t_list	*tmp_a;
+
+	tmp_a = *a;
+	while (tmp_a)
+	{
+		if (tmp_a->index > b_idx && tmp_a->index < target_idx)
+		{
+			target_idx = tmp_a->index;
+			target_pos = tmp_a->pos;
+		}
+		tmp_a = tmp_a->next;
+	}
+	if (target_idx != INT_MAX)
+		return (target_pos);
+	tmp_a = *a;
+	while (tmp_a)
+	{
+		if (tmp_a->index < target_idx)
+		{
+			target_idx = tmp_a->index;
+			target_pos = tmp_a->pos;
+		}
+		tmp_a = tmp_a->next;
+	}
+	return (target_pos);
+}
+static void	get_position(t_list **stack)
+{
+	t_list	*tmp;
+	int		i;
+
+	tmp = *stack;
+	i = 0;
+	while (tmp)
+	{
+		tmp->pos = i;
+		tmp = tmp->next;
+		i++;
+	}
+}
+
+void	get_target_position(t_list **a, t_list **b)
+{
+	t_list	*tmp_b;
+	int		target_pos;
+
+	tmp_b = *b;
+	get_position(a);
+	get_position(b);
+	target_pos = 0;
+	while (tmp_b)
+	{
+		target_pos = get_target(a, tmp_b->index, INT_MAX, target_pos);
+		tmp_b->target_pos = target_pos;
+		tmp_b = tmp_b->next;
+	}
+}
+int	get_lowest_index_position(t_list **stack)
+{
+	t_list	*tmp;
+	int		lowest_index;
+	int		lowest_pos;
+
+	tmp = *stack;
+	lowest_index = INT_MAX;
+	get_position(stack);
+	lowest_pos = tmp->pos;
+	while (tmp)
+	{
+		if (tmp->index < lowest_index)
+		{
+			lowest_index = tmp->index;
+			lowest_pos = tmp->pos;
+		}
+		tmp = tmp->next;
+	}
+	return (lowest_pos);
+}
+
+static void	shift_stack(t_list **stack_a)
+{
+	int	lowest_pos;
+	int	stack_size;
+
+	stack_size = ft_lstsize(*stack_a);
+	lowest_pos = get_lowest_index_position(stack_a);
+	if (lowest_pos > stack_size / 2)
+	{
+		while (lowest_pos < stack_size)
+		{
+			ft_printf("rra\n");
+			rra(stack_a);
+			lowest_pos++;
+		}
+	}
+	else
+	{
+		while (lowest_pos > 0)
+		{
+			ft_printf("ra\n");
+			ra(stack_a);
+			lowest_pos--;
+		}
+	}
+}
+void	sort(t_list **stack_a, t_list **stack_b)
+{
+	push_all_save_three(stack_a, stack_b);
+	sort_three(stack_a);
+	while (*stack_b)
+	{
+		get_target_position(stack_a, stack_b);
+		get_cost(stack_a, stack_b);
+		do_cheapest_move(stack_a, stack_b);
+	}
+	if (check_sort(stack_a) == 1)
+		shift_stack(stack_a);
+}
+
 int	main(int ac, char **av)
 {
 	int		x;
 	t_list	*stack_a;
 	t_list	*stack_b;
-	// t_list	*tm;
+	t_list	*tm;
 	// t_list	*tm2;
 	// char	**store;
 	stack_a = 0;
@@ -471,10 +739,15 @@ int	main(int ac, char **av)
 			exit(0);
 		set_index(&stack_a);
 		set_chunk_num(&stack_a);
+		// if (ft_lstsize(stack_a) == 2)
+		// {
+		// 	ft_printf("sa\n");
+		// 	sa(&stack_a);
+		// }
 		if (ft_lstsize(stack_a) == 3)
 			sort_three(&stack_a);
 		else
-			sort_list_second(&stack_a, &stack_b);
+			sort_list(&stack_a, &stack_b);
 		// int y = 10;
 		// ft_printf("%d\n", y >> 1);
 		// do_op(&stack_a, &stack_b);
@@ -485,13 +758,13 @@ int	main(int ac, char **av)
 		// pb(&stack_b, &stack_a);
 		// pa(&stack_a, &stack_b);
 		// rb(&stack_b);
-		// tm = stack_a;
-		// while (tm)
-		// {
-		// 	ft_printf("stack_a[%d](%d): %d\n",tm->index , tm->chunk_num, tm->content);
-		// 	// ft_printf("%d\n",tm->content);
-		// 	tm = tm->next;
-		// }
+		tm = stack_a;
+		while (tm)
+		{
+			ft_printf("stack_a[%d](%d): %d\n",tm->index , tm->chunk_num, tm->content);
+			// ft_printf("%d\n",tm->content);
+			tm = tm->next;
+		}
 		
 		// tm2 = stack_b;
 		// ft_printf("\n\n");
