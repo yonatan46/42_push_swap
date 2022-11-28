@@ -1,32 +1,40 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/20 22:37:44 by yonamog2          #+#    #+#              #
-#    Updated: 2022/11/24 03:50:55 by yonamog2         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC		= gcc
+CFLAGS	= -Wall -Werror -Wextra -fsanitize=address
+NAME	= push_swap
 
-NAME = push_swap
-FILES = main.c test1.c test2.c
-OBJ = $(FILES:.c=.o)
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+SRC_PATH = src/
+OBJ_PATH = obj/
 
-all : $(NAME)
+SRC		= main.c \
+		input_check.c input_check_utils.c \
+		initialization.c \
+		stack.c \
+		swap.c push.c rotate.c reverse_rotate.c \
+		sort_tiny.c sort.c \
+		position.c cost.c do_move.c \
+		utils.c ft_split_comp.c create_list.c checking.c
+SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+OBJ		= $(SRC:.c=.o)
+OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
+INCS	= -I ./includes/
 
-$(NAME) : $(OBJ)
-	cd ft_printf && make
-	$(CC) $(CFLAGS) $(FILES) ./ft_printf/libft.a -o $(NAME)
-clean: 
-	cd ft_printf && make clean
-	rm -rf $(OBJ)
+all: $(OBJ_PATH) $(NAME) 
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
+
+$(OBJ_PATH):
+	mkdir $(OBJ_PATH)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+clean:
+	rm -rf $(OBJ_PATH)
+
 fclean: clean
-	cd ft_printf && make fclean
-	rm -rf $(NAME)
-re: fclean all 
+	rm -f $(NAME)
+
+re: fclean all
 
 .PHONY: all clean fclean re 
