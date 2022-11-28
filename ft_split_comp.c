@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_comp.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/28 17:15:55 by yonamog2          #+#    #+#             */
+/*   Updated: 2022/11/28 17:59:52 by yonamog2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+
 static int	count_occ(const char *str, char c)
 {
 	int	i;
@@ -19,21 +32,7 @@ static int	count_occ(const char *str, char c)
 	}
 	return (i);
 }
-int	ft_isprint(int c)
-{
-	if (c >= ' ' && c <= '~')
-		return (1);
-	return (0);
-}
-size_t	ft_strlen(const char *s)
-{
-	int	x;
 
-	x = 0;
-	while (s[x] != '\0')
-		x++;
-	return (x);
-}
 char	*ft_strdup(char *s1)
 {
 	int		x;
@@ -44,7 +43,7 @@ char	*ft_strdup(char *s1)
 	x = -1;
 	dup = malloc(sizeof(char) * size);
 	if (!dup)
-		return (NULL);
+		return (0);
 	while (s1[++x] != '\0')
 		dup[x] = s1[x];
 	dup[x] = '\0';
@@ -56,7 +55,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 
 	if (!s)
-		return (NULL);
+		return (0);
 	i = 0;
 	if (start > ft_strlen(s))
 		return (ft_strdup(""));
@@ -64,7 +63,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = (ft_strlen(s) - start);
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (NULL);
+		return (0);
 	while (i < len)
 		str[i++] = s[start++];
 	str[i] = '\0';
@@ -106,13 +105,13 @@ char	**ft_split(const char *s, char c)
 	int		set;
 
 	if (!s)
-		return (NULL);
+		return (0);
 	y = 0;
 	set = 0;
 	str = (char **)malloc (sizeof (char *) * ((count_occ(s, c) + 1)));
 	if (!str)
-		return (NULL);
+		return (0);
 	y = do_pls(s, c, str, set);
-	str[y] = NULL;
+	str[y] = 0;
 	return (str);
 }

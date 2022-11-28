@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/28 17:16:50 by yonamog2          #+#    #+#             */
+/*   Updated: 2022/11/28 17:18:08 by yonamog2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /* push_all_save_three:
@@ -5,7 +17,7 @@
 *	Pushes the smaller values first, and then the larger values to help with
 *	sorting efficiency.
 */
-static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
+static void	push_all_save_three(t_list **stack_a, t_list **stack_b)
 {
 	int	stack_size;
 	int	pushed;
@@ -38,7 +50,7 @@ static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 *	rotate it into position, otherwise rotate until it is at the top of the
 *	stack.
 */
-static void	shift_stack(t_stack **stack_a)
+static void	shift_stack(t_list **stack_a)
 {
 	int	lowest_pos;
 	int	stack_size;
@@ -70,10 +82,10 @@ static void	shift_stack(t_stack **stack_a)
 *		Calculate the most cost-effective move.
 *		Shift elements until stack A is in order.
 */
-void	sort(t_stack **stack_a, t_stack **stack_b)
+void	sort(t_list **stack_a, t_list **stack_b)
 {
 	push_all_save_three(stack_a, stack_b);
-	tiny_sort(stack_a);
+	sort_three(stack_a);
 	while (*stack_b)
 	{
 		get_target_position(stack_a, stack_b);

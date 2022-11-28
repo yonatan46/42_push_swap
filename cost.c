@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cost.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/28 17:15:40 by yonamog2          #+#    #+#             */
+/*   Updated: 2022/11/28 17:28:21 by yonamog2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /* get_cost:
@@ -9,10 +21,10 @@
 *	If the element is in the bottom half of the stack, the cost will be negative,
 *	if it is in the top half, the cost is positive. 
 */
-void	get_cost(t_stack **stack_a, t_stack **stack_b)
+void	get_cost(t_list **stack_a, t_list **stack_b)
 {
-	t_stack	*tmp_a;
-	t_stack	*tmp_b;
+	t_list	*tmp_a;
+	t_list	*tmp_b;
 	int		size_a;
 	int		size_b;
 
@@ -36,9 +48,9 @@ void	get_cost(t_stack **stack_a, t_stack **stack_b)
 *	Finds the element in stack B with the cheapest cost to move to stack A
 *	and moves it to the correct position in stack A.
 */
-void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
+void	do_cheapest_move(t_list **stack_a, t_list **stack_b)
 {
-	t_stack	*tmp;
+	t_list	*tmp;
 	int		cheapest;
 	int		cost_a;
 	int		cost_b;

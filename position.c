@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   position.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/28 17:16:27 by yonamog2          #+#    #+#             */
+/*   Updated: 2022/11/28 17:18:02 by yonamog2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /* get_position:
@@ -13,9 +25,9 @@
 *	push the highest value, 9, which is in third position, it would cost 2 extra
 *	moves to bring that 9 to the top of b before pushing it to stack a.
 */
-static void	get_position(t_stack **stack)
+static void	get_position(t_list **stack)
 {
-	t_stack	*tmp;
+	t_list	*tmp;
 	int		i;
 
 	tmp = *stack;
@@ -32,9 +44,9 @@ static void	get_position(t_stack **stack)
 *	Gets the current position of the element with the lowest index
 *	within a stack.
 */
-int	get_lowest_index_position(t_stack **stack)
+int	get_lowest_index_position(t_list **stack)
 {
-	t_stack	*tmp;
+	t_list	*tmp;
 	int		lowest_index;
 	int		lowest_pos;
 
@@ -83,10 +95,10 @@ int	get_lowest_index_position(t_stack **stack)
 *	So target_pos needs to be the position of index 3, since that is
 *	the "end" of the stack.
 */
-static int	get_target(t_stack **a, int b_idx,
+static int	get_target(t_list **a, int b_idx,
 								int target_idx, int target_pos)
 {
-	t_stack	*tmp_a;
+	t_list	*tmp_a;
 
 	tmp_a = *a;
 	while (tmp_a)
@@ -120,9 +132,9 @@ static int	get_target(t_stack **a, int b_idx,
 *	be used to calculate the cost of moving each element to
 *	its target position in stack A.
 */
-void	get_target_position(t_stack **a, t_stack **b)
+void	get_target_position(t_list **a, t_list **b)
 {
-	t_stack	*tmp_b;
+	t_list	*tmp_b;
 	int		target_pos;
 
 	tmp_b = *b;

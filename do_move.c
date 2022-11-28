@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   do_move.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/28 17:15:50 by yonamog2          #+#    #+#             */
+/*   Updated: 2022/11/28 17:17:54 by yonamog2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /* do_rev_rotate_both:
@@ -7,7 +19,7 @@
 *	rotated, when one reaches 0, the stack has been rotated as far as possible
 *	and the top position is correct.
 */
-static void	do_rev_rotate_both(t_stack **a, t_stack **b,
+static void	do_rev_rotate_both(t_list **a, t_list **b,
 												int *cost_a, int *cost_b)
 {
 	while (*cost_a < 0 && *cost_b < 0)
@@ -25,7 +37,7 @@ static void	do_rev_rotate_both(t_stack **a, t_stack **b,
 *	rotated, when one reaches 0, the stack has been rotated as far as possible
 *	and the top position is correct.
 */
-static void	do_rotate_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
+static void	do_rotate_both(t_list **a, t_list **b, int *cost_a, int *cost_b)
 {
 	while (*cost_a > 0 && *cost_b > 0)
 	{
@@ -40,7 +52,7 @@ static void	do_rotate_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 *	the stack will be reverse rotated, if it is positive, it will be 
 *	rotated.
 */
-static void	do_rotate_a(t_stack **a, int *cost)
+static void	do_rotate_a(t_list **a, int *cost)
 {
 	while (*cost)
 	{
@@ -62,7 +74,7 @@ static void	do_rotate_a(t_stack **a, int *cost)
 *	the stack will be reverse rotated, if it is positive, it will be 
 *	rotated.
 */
-static void	do_rotate_b(t_stack **b, int *cost)
+static void	do_rotate_b(t_list **b, int *cost)
 {
 	while (*cost)
 	{
@@ -87,7 +99,7 @@ static void	do_rotate_b(t_stack **b, int *cost)
 *	They might also be rotated separately, before finally pushing the top B element
 *	to the top stack A.
 */
-void	do_move(t_stack **a, t_stack **b, int cost_a, int cost_b)
+void	do_move(t_list **a, t_list **b, int cost_a, int cost_b)
 {
 	if (cost_a < 0 && cost_b < 0)
 		do_rev_rotate_both(a, b, &cost_a, &cost_b);
