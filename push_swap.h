@@ -91,7 +91,7 @@ int			create_list_all(t_list **data, char **av);
 int			full_scan(char **av, t_list **head);
 int			check_duplicate(t_list **stack_a);
 void		init_full(t_list **head_a, t_list **head_b, char **av);
-int			ft_strlen(const char *s);
+size_t		ft_strlen(const char *s);
 char		*ft_strdup(char *s1);
 int			ft_isprint(int c);
 

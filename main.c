@@ -77,10 +77,20 @@ int	main(int ac, char **av)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
+	int		x;
 
 	if (ac < 2)
 		return (0);
-	init_full(&stack_a, &stack_b, av);
+	full_scan(av, &stack_a);
+	stack_b = NULL;
+	stack_a = NULL;
+	create_list_all(&stack_a, av);
+	x = check_duplicate(&stack_a);
+	if (x == 1)
+	{
+		if (stack_a)
+			exit_prog(&stack_a);
+	}
 	if (check_sort(stack_a) == 1)
 	{
 		free_list(&stack_a);

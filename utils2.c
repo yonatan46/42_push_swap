@@ -19,7 +19,7 @@ int	ft_isprint(int c)
 	return (0);
 }
 
-int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	int	x;
 
@@ -29,21 +29,7 @@ int	ft_strlen(const char *s)
 	return (x);
 }
 
-void	init_full(t_list **head_a, t_list **head_b, char **av)
-{
-	int	x;
 
-	full_scan(av, head_b);
-	(*head_b) = NULL;
-	(*head_b) = NULL;
-	create_list_all(head_a, av);
-	x = check_duplicate(head_a);
-	if (x == 1)
-	{
-		if (*head_a)
-			exit_prog(head_a);
-	}
-}
 
 void	ft_putstr(char *str)
 {
