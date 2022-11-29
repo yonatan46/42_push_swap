@@ -8,6 +8,9 @@
 		"stdlib.h": "c",
 		"climits": "c",
 		"streambuf": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"stdio.h": "c",
+		"checker.h": "c",
+		"fcntl.h": "c"
 	}
 }
