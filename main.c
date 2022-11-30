@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:16:20 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/28 18:00:45 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:58:01 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,6 @@ void	push_swap(t_list **stack_a, t_list **stack_b)
 		sort_three(stack_a);
 	else if (size > 3 && !check_sort(*stack_a))
 		sort(stack_a, stack_b);
-}
-
-void	set_index(t_list **head)
-{
-	int		x;
-	t_list	*tmp;
-
-	x = 1;
-	tmp = (*head);
-	while (tmp)
-	{
-		tmp->index = x;
-		tmp = tmp->next;
-		x++;
-	}
 }
 
 void	set_chunk_num(t_list **head)

@@ -6,16 +6,13 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:16:45 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/28 17:18:07 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:55:04 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* find_highest_index:
-*	Returns the highest index in a stack.
-*/
-static int	find_highest_index(t_list *stack)
+int	find_highest_index(t_list *stack)
 {
 	int		index;
 

@@ -6,18 +6,13 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:16:50 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/28 17:18:08 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:56:40 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* push_all_save_three:
-*	Pushes all the elements of stack a into stack b, except the three last ones.
-*	Pushes the smaller values first, and then the larger values to help with
-*	sorting efficiency.
-*/
-static void	push_all_save_three(t_list **stack_a, t_list **stack_b)
+void	push_all_save_three(t_list **stack_a, t_list **stack_b)
 {
 	int	stack_size;
 	int	pushed;
@@ -75,13 +70,6 @@ static void	shift_stack(t_list **stack_a)
 	}
 }
 
-/* sort:
-*	Sorting algorithm for a stack larger than 3.
-*		Push everything but 3 numbers to stack B.
-*		Sort the 3 numbers left in stack A.
-*		Calculate the most cost-effective move.
-*		Shift elements until stack A is in order.
-*/
 void	sort(t_list **stack_a, t_list **stack_b)
 {
 	push_all_save_three(stack_a, stack_b);
