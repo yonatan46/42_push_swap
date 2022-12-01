@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/28 17:16:40 by yonamog2          #+#    #+#             */
+/*   Updated: 2022/12/01 23:35:26 by yonamog2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	rotate(t_list **stack)
+{
+	t_list	*tmp;
+	t_list	*tail;
+
+	tmp = *stack;
+	*stack = (*stack)->next;
+	tail = get_stack_bottom(*stack);
+	tmp->next = NULL;
+	tail->next = tmp;
+}
+
+void	do_ra(t_list **stack_a)
+{
+	rotate(stack_a);
+}
+
+void	do_rb(t_list **stack_b)
+{
+	rotate(stack_b);
+}
+
+void	do_rr(t_list **stack_a, t_list **stack_b)
+{
+	rotate(stack_a);
+	rotate(stack_b);
+}
