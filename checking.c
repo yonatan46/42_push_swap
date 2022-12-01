@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:13:48 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/28 17:38:49 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:52:51 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,27 @@
 int	check_duplicate(t_list **stack_a)
 {
 	t_var	vars;
-	t_list	*tmp;
-	t_list	*tmp2;
 
 	vars.x = 0;
-	tmp = (*stack_a);
-	while (tmp->next)
+	vars.tmp1 = (*stack_a);
+	while (vars.tmp1->next)
 	{
 		vars.y = 0;
-		vars.z = tmp->value;
-		tmp2 = (*stack_a);
-		while (tmp2)
+		vars.z = vars.tmp1->value;
+		vars.tmp2 = (*stack_a);
+		while (vars.tmp2)
 		{
 			if (vars.y == vars.x)
 			{
-				tmp2 = tmp2->next;
+				vars.tmp2 = vars.tmp2->next;
 				vars.y++;
 			}
-			if (tmp2->value == vars.z)
+			if (vars.tmp2->value == vars.z)
 				return (1);
-			tmp2 = tmp2->next;
+			vars.tmp2 = vars.tmp2->next;
 			vars.y++;
 		}
-		tmp = tmp->next;
+		vars.tmp1 = vars.tmp1->next;
 		vars.x++;
 	}
 	return (0);

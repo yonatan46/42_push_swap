@@ -6,24 +6,11 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:15:46 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/28 17:17:53 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:14:00 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (lst)
-	{
-		if (lst->next == 0)
-			return (lst);
-		else
-			while (lst->next)
-				lst = lst->next;
-	}
-	return (lst);
-}
 
 t_list	*ft_lstnew(int content)
 {
@@ -37,6 +24,7 @@ t_list	*ft_lstnew(int content)
 	}	
 	return (node);
 }
+
 void	ft_lstadd_back(t_list **lst, t_list *ne)
 {
 	t_list	*last;
@@ -47,15 +35,15 @@ void	ft_lstadd_back(t_list **lst, t_list *ne)
 			*lst = ne;
 		else
 		{
-			last = ft_lstlast(*lst);
+			last = get_stack_bottom(*lst);
 			last->next = ne;
 		}
 	}
 }
 
-int add_to_list(t_list **data ,char **bunch)
+int	add_to_list(t_list **data, char **bunch)
 {
-	int x;
+	int	x;
 
 	x = -1;
 	while (bunch[++x])
@@ -76,5 +64,5 @@ int	create_list_all(t_list **data, char **av)
 		free_func(store);
 		x++;
 	}
-	return(0);
+	return (0);
 }

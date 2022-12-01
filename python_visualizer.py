@@ -9,7 +9,6 @@ import subprocess
 import os
 from math import sqrt
 
-
 """
 __project__ = "push_swap visualizer"
 __author__ = "Emmanuel Ruaud"

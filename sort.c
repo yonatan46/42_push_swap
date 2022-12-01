@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:16:50 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/30 14:56:40 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:10:56 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,7 @@ void	push_all_save_three(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-/* shift_stack:
-*	After the bulk of the stack is sorted, shifts stack a until the lowest
-*	value is at the top. If it is in the bottom half of the stack, reverse
-*	rotate it into position, otherwise rotate until it is at the top of the
-*	stack.
-*/
-static void	shift_stack(t_list **stack_a)
+void	shift_stack(t_list **stack_a)
 {
 	int	lowest_pos;
 	int	stack_size;

@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:16:18 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/29 12:16:19 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:17:57 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,22 @@ typedef struct s_list
 
 typedef struct s_var
 {
-	int	x;
-	int	z;
-	int	y;
+	int		x;
+	int		z;
+	int		y;
+	t_list	*tmp1;
+	t_list	*tmp2;
+	t_list	*stack_a;
+	t_list	*stack_b;
 }	t_var;
+
+typedef struct s_atoi
+{
+	int			x;
+	int			sign;
+	long long	res;
+	long long	copy;
+}	t_atoi;
 
 /* Sorting Algorithms */
 
@@ -47,16 +59,13 @@ void		sort(t_list **stack_a, t_list **stack_b);
 int			get_lowest_index_position(t_list **stack);
 void		get_target_position(t_list **stack_a, t_list **stack_b);
 
+/* Calculate Move */
 /* Cost */
-
 void		get_cost(t_list **stack_a, t_list **stack_b);
 void		do_cheapest_move(t_list **stack_a, t_list **stack_b);
-
-/* Calculate Move */
-
 void		do_move(t_list **a, t_list **b, int cost_a, int cost_b);
 
-/* Operations */
+/* moves */
 
 void		do_pa(t_list **stack_a, t_list **stack_b);
 void		do_pb(t_list **stack_a, t_list **stack_b);
@@ -74,7 +83,6 @@ void		do_rrb(t_list **stack_b);
 
 t_list		*get_stack_bottom(t_list *stack);
 t_list		*get_stack_before_bottom(t_list *stack);
-void		stack_add_bottom(t_list **stack, t_list *new);
 int			get_stack_size(t_list	*stack);
 
 /* Utils */

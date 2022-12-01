@@ -6,13 +6,13 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:15:55 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/28 17:59:52 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:56:27 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	count_occ(const char *str, char c)
+int	count_occ(const char *str, char c)
 {
 	int	i;
 	int	trigger;
@@ -49,6 +49,7 @@ char	*ft_strdup(char *s1)
 	dup[x] = '\0';
 	return (dup);
 }
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
@@ -69,7 +70,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str[i] = '\0';
 	return (str);
 }
-static	int	do_pls(const char *s_1, char c_1, char **str_1, int set1)
+
+int	do_pls(const char *s_1, char c_1, char **str_1, int set1)
 {
 	int	y1;
 	int	x1;

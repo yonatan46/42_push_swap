@@ -6,13 +6,13 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:16:35 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/28 17:18:05 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:07:47 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rev_rotate(t_list **stack)
+void	rev_rotate(t_list **stack)
 {
 	t_list	*tmp;
 	t_list	*tail;

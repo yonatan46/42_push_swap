@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:48:46 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/28 17:53:58 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:53:02 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ size_t	ft_strlen(const char *s)
 		x++;
 	return (x);
 }
-
-
 
 void	ft_putstr(char *str)
 {

@@ -6,13 +6,13 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:17:03 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/28 17:18:11 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:15:43 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_list *stack)
+void	swap(t_list *stack)
 {
 	int	tmp;
 
