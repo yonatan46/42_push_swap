@@ -6,7 +6,7 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:03:43 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/29 18:36:50 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 21:00:42 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*get_next_line(int fd)
 	stor = ft_get_remain(stor);
 	return (line);
 }
-
 
 // int main()
 // {

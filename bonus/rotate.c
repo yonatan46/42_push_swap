@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus.c                                            :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 15:59:34 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/12/01 21:01:41 by yonamog2         ###   ########.fr       */
+/*   Created: 2022/11/28 17:16:40 by yonamog2          #+#    #+#             */
+/*   Updated: 2022/12/01 23:35:26 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-int	main()
+void	rotate(t_list **stack)
 {
-	int	fd;
-	char s;
-	
-	fd = open("commands", O_RDWR | O_TRUNC);
-	while (read(0, &s, 1))
-		write(fd, &s, 1);
-	write(1, "Done\n", 5);
-	char *str;
-	int fd1 = open("commands", O_RDONLY);
-	// printf("%s",get_next_line(fd1));
-	str = get_next_line(fd1);
-	while (str)
-	{
-		printf("%s", str);
-		str = get_next_line(fd);
-	}
+	t_list	*tmp;
+	t_list	*tail;
+
+	tmp = *stack;
+	*stack = (*stack)->next;
+	tail = get_stack_bottom(*stack);
+	tmp->next = NULL;
+	tail->next = tmp;
+}
+
+void	do_ra(t_list **stack_a)
+{
+	rotate(stack_a);
+}
+
+void	do_rb(t_list **stack_b)
+{
+	rotate(stack_b);
+}
+
+void	do_rr(t_list **stack_a, t_list **stack_b)
+{
+	rotate(stack_a);
+	rotate(stack_b);
 }

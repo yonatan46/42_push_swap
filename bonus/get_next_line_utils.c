@@ -6,23 +6,11 @@
 /*   By: yonamog2 <yonamog2@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:03:36 by yonamog2          #+#    #+#             */
-/*   Updated: 2022/11/29 18:34:03 by yonamog2         ###   ########.fr       */
+/*   Updated: 2022/12/01 22:42:46 by yonamog2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-int	ft_strlen(char *s)
-{
-	int	x;
-
-	x = 0;
-	if (!s)
-		return (0);
-	while (s[x] != '\0')
-		x++;
-	return (x);
-}
 
 char	*ft_strchr(char *s, int c)
 {
